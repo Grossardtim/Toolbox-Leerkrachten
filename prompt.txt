@@ -1,0 +1,665 @@
+BOUWCONTROLE — 1.2.001
+- Controleer vóór compilatie of dist/LeerkrachtenTool.exe vervangen kan worden.
+  Geef bij blokkering duidelijke uitleg over afsluiten van app én server.
+  Verwijder niets en beëindig geen gebruikersprocessen automatisch.
+
+LEERPLANHERWERKING — 1.2.000
+- Per studierichting en graad vormt de verzameling BK’s één vakoverschrijdend leerplan.
+- Een BK kan nul of meer subdoelen hebben. Zonder subdoelen wordt de BK-omschrijving zelf beoordeeld.
+- Kies in het lesvenster meerdere volledige BK’s, losse subdoelen of het hele leerplan via aanvinkvakjes.
+  Later toevoegen vult de selectie aan zonder bestaande lespunten of scores te vervangen.
+- BK is aangereikt/geëvalueerd zodra alle subdoelen minstens één cijfer hebben over de zichtbare lessen/vakken.
+  Zonder subdoelen volstaat één cijfer op de BK. Nul telt mee, leeg en Afwezig niet. Dit is geen slaaggrens.
+- Bestaande leshistoriek behoudt haar oorspronkelijke tekst en scores. Koppel oude lespunten alleen eenduidig
+  aan huidige subdoelen. Onzekere koppelingen blijven als historiek zichtbaar en tellen niet als actuele subdoelen.
+- Behoud identiteit van ongewijzigde subdoelen bij herschikken. Een gewijzigde omschrijving is een nieuw subdoel.
+- Opvolging blijft per leerlinginschrijving. Voor samenvoegen over schooljaren is nog een vast leerlingnummer
+  of expliciete koppeling nodig; nooit alleen namen gebruiken. Vraag hierover staat nog open.
+- Verwijder een BK uit een les in de doelhoofding, met bevestiging. Bij gegroepeerde titels per BK een knop.
+- Volgordeknoppen even groot en compact; tabelkop wit; duidelijke tekst Lege rijen tonen/verbergen.
+- Opslaan en Excel bij de lestitel, tabbladen onder lesonderwerp/datum, aparte Scoreregels-tab verwijderen.
+- Totalen op 100: som / (80 × aantal beoordeelde punten) × 100. Geen cijfers = leeg, geen nul.
+  Gemiddelden en vaste scorekleuren blijven op 0/20/40/60/80 gebaseerd. Pas totalen ook in Excel aan.
+- Test 19 leerlingen en veel subdoelen in afzonderlijke fictieve database; geen echte data vervangen.
+- Bestaande AppData-opslag behouden. Bij schema-update automatisch back-up vóór migratie.
+- Niet compileren. Versie en softwarelogboek bijgewerkt naar 1.2.000.
+
+DESKTOPHERWERKING EN VERSIEBEHEER — 1.1.000 (nieuwste eisen)
+- Vervang de vaste drie kolommen op Evaluaties door een desktopwerkplek:
+  compacte linkernavigatie, volledige breedte voor het centrale werkgebied,
+  vaste titel, actieknoppen en statusbalk. Geen permanente rechterkolom.
+- Alleen het bewerkingsgedeelte scrolt. Het venster, de navigatie en acties
+  blijven stil staan. Gebruik aparte tabbladen Punten / Feedback / Klasresultaten.
+  Wisselen van tabblad behoudt alle nog niet opgeslagen formulierwaarden.
+- Leerplandoelen openen in een breed dialoogvenster met tabbladen voor
+  toevoegen, geselecteerde doelen en scoreregels. Subdoelen bij toevoegen
+  goed leesbaar over een brede tekstkolom; geselecteerde doelen compact.
+- Algemeen: compacte desktopbediening, kleinere knoppen en werkbalken,
+  minder witruimte, subtiele randen; geen grote mobiele aanraaktegels.
+- Pas dit consequent toe op aanmelden, start, alle beheerlijsten en formulieren,
+  export, instellingen en beheerdersschermen. Houd titels en filters vast;
+  laat alleen de inhoud eronder scrollen. Plaats rijacties naast elkaar.
+- Softwareversies: x.x voor grote updates en functies, .xxx voor bugfixes.
+  Huidige release 1.1.000. Toon versie in navigatie, statusbalk, aanmelden en
+  native venstertitel. Houd schoolportal/releases.py bij als centrale bron.
+- Admin krijgt Softwarewijzigingen met releasegeschiedenis. Dit staat los
+  van Gegevenswijzigingen met handelingen van gebruikers.
+- Iedere volgende wijziging: prompt.txt en releasegeschiedenis bijwerken,
+  versie passend verhogen en oude releasevermeldingen bewaren (AGENTS.md).
+
+AANVULLING NA SCHERMFEEDBACK — 5 OKTOBER 2026 (hoogste voorrang)
+- Noem de evaluatiemodule Evaluaties. Gebruik coherente lijnicoontjes bij
+  menuopties, moduletegels en schermtitels; evaluatie-icoon als checklist/loep.
+- Titel Leerkrachten Tool groter en gecentreerd onder het schoollogo bij
+  aanmelden. Verwijs naar de Tool-beheerder.
+- Overzichtsstatistieken minder hoog; evalueren met potloodknop.
+- Rechterkolom: thematische inklapknop boven opslagtegel, opslagtegel alleen
+  knoppen, Excelknop in passend kleurthema. Geselecteerde doelen zonder
+  subdoeldetails; vuilbak altijd rechts naast doelcode, lange titels normaal
+  laten teruglopen. Namen leerlingen groter, verticaal, woordgewijs gewrapt
+  en met tegelachtergrond.
+- Verplaats Beheer naar Instellingen > Tool-administratie. Alle ingelogde
+  leerkrachten mogen alle schooljaren, richtingen, klassen, leerlingen, vakken
+  en doelen selecteren, toevoegen, wijzigen en wissen (met bestaande
+  afhankelijkheidsbescherming). Bewaar de oorspronkelijke maker; log de editor.
+  Deze gedeelde gegevens zijn herbruikbaar door latere modules.
+- Lesresultaten: maker en admin mogen wijzigen; anderen alleen bekijken,
+  binnen eventueel door admin beperkte lesinzage. Admin mag alle lessen
+  wijzigen en wissen. Catalogusinzage is niet beperkt per leerkracht.
+  Bestaande gelijknamige records niet automatisch samenvoegen: behoud IDs
+  en historische leskoppelingen. Nieuwe dubbele namen binnen context afwijzen.
+- Klasexport: eerste tab Klasoverzicht evaluaties, geselecteerde lessen elk
+  apart en Feedback. A4 liggend, maximaal één pagina breed en onbeperkt hoog,
+  tabelkoppen herhalen, afdrukbereik alleen gebruikte tabel.
+- Echte koptekst: logo links, actieve werkbladnaam en vak midden, richting en
+  leerjaar rechts. Voettekst: schooljaar/klas/leerkracht links, paginanummer
+  midden, scoreregels rechts. Gebruik standaard marges en kleine rustige
+  typografie. Geen herhaling van deze vaste info in werkbladcellen.
+- Tabelranden, afwisselend pastel, datum en lesonderwerp links; geen vak in
+  de leskolom. Leerlingkolommen smal met gedraaide namen en woordterugloop.
+  Scorekleuren ook op gemiddelden en totalen, categorie naar beneden.
+  Doelen als visueel gescheiden blokken. Feedbackhoogte past bij tekst;
+  zeer lange feedback verdeeld over complete vervolgrijen.
+- Lokale Windows-app via pywebview/WebView2: eigen gemaximaliseerd venster,
+  vensterknoppen behouden, Excel-downloads ingeschakeld. Start-app.bat start
+  bronversie met projectdata; volgende exe-build standaard appmodus.
+  --browser blijft beschikbaar; zonder pywebview terugval naar browser.
+- Afsluitknop in accounttegel uitsluitend voor door launcher beheerde lokale
+  server. Vereis login, loopback, CSRF en bevestiging. Stop alleen het eigen
+  serverproces en sluit appvenster. SQLite heeft geen apart SQL-serverproces.
+  Toon de afsluitknop niet bij een centraal gehoste server.
+- Bestaande data-opslaglocaties niet veranderen en nog NIET compileren.
+
+ACTUELE OPDRACHT EN VOORRANGSREGELS — 5 OKTOBER 2026
+Deze sectie vervangt tegenstrijdige oudere eisen verderop in dit document.
+
+Bouw en onderhoud Leerkrachten Tool als modulaire Nederlandstalige browserapp
+voor Windows/Mac, met eigen accounts en uitbreidbare modules. Behoud bestaande
+gegevens bij updates via migraties en automatische back-ups. Compileer pas op
+expliciet verzoek; bereid de Windows-build als LeerkrachtenTool.exe voor.
+De bestaande externe gegevensmap Leerkrachtenportaal moet behouden blijven.
+
+BEHEER EN STRUCTUUR
+- Schooljaren en studierichtingen beheren; klassen per schooljaar en richting,
+  leerlingen per klas, vakken gekoppeld aan richting en klas.
+- Doelen horen bij een studierichting en graad, niet bij vak of schooljaar.
+  Graad 1 omvat jaar 1–2; graad 2 jaar 3–4; graad 3 jaar 5–7.
+- Subdoelen/evaluatiepunten zijn evenwaardig. Bewaar historische leskopieën.
+- Compacte doelinvoer; onthoud laatst gekozen richting en graad per gebruiker.
+- Geen importknop en geen subdoelkolom in het doelenbeheer.
+- Klassen en leerlingen samen: klas selecteren toont bijbehorende leerlingen.
+- Alle lijsten kolomfilters en sortering; zonder filters alle toegankelijke
+  ingaven tonen, inclusief oudere jaren en inactieve records.
+- Klassekeuzes primair sorteren op studierichting en daarna klasnaam.
+
+EVALUATIES
+- Lessen met onderwerp/datum, gekozen doelen, klasfeedback en leerlingfeedback.
+- Scores 0/20/40/60/80 of Afwezig; leeg betekent niet beoordeeld.
+- Alleen cijfers tellen mee; 0 telt, Afwezig en leeg niet. Totalen als x/y,
+  met 80 mogelijke punten per beoordeeld punt. Aantal beoordeeld per leerling.
+- Bereken totalen/gemiddelden direct bij invoer; opslaan blijft noodzakelijk.
+- Doelen versleepbaar, gelijke titels groeperen zonder BK in groepskop;
+  zet de afzonderlijke BK-code vet met dubbele punt voor elk subdoel.
+- Lege rijen standaard ingeklapt; driehoekje om ze uit te klappen.
+- Leerlingnamen verticaal en vastgezet. Compacte lesgegevens en doelkaarten.
+- Doelen verwijderen uit les kan; catalogusdoelen wissen alleen via Beheer.
+- Rechter opslagtegel blijft beschikbaar; roze doelenpaneel begint eronder
+  en scrolt afzonderlijk. Linker en rechter kolom kunnen worden ingeklapt.
+
+DOELENOVERZICHT
+- Extra scherm in Evaluaties met jaar/richting/klas/graad-selectie.
+- Subdoelen verticaal, leerlingen horizontaal. Vinkje zodra minstens één
+  numerieke score bestaat; anders kruisje. Dit betekent aangereikt, niet
+  automatisch geslaagd. Afwezig telt niet als aangereikt; score 0 wel.
+- Kleur op gemiddelde, naar beneden afgerond naar 0/20/40/60/80.
+- Excel-export van dezelfde tabel; historische scores blijven zichtbaar.
+
+TOEGANG EN ADMIN
+- Iedereen ziet standaard inhoud van alle leerkrachten. Admin kan per
+  leerkracht kiezen van wie de inhoud zichtbaar is. Admin ziet alles.
+- Alleen eigenaar mag eigen evaluaties wijzigen; andermans lessen alleen-lezen.
+  Controleer dit op de server, ook bij rechtstreeks ingestuurde verzoeken.
+- Leg eigenaar vast en registreer belangrijke wijzigingen met actor in logboek.
+- Admin beheert accounts, moduletoegang, inzage, back-ups en wijzigingslogboek.
+- SQLite-back-up downloaden of bewaren op absoluut pad op servercomputer.
+- Herstel: bestand valideren, compatibele migraties controleren, adminwachtwoord
+  en bevestiging eisen, eerst veiligheidskopie maken, sessies daarna afmelden.
+  Andere instanties met dezelfde database moeten gestopt zijn. PostgreSQL-
+  herstel is een hostingtaak en valt buiten deze lokale back-upfunctie.
+
+LAY-OUT EN INSTELLINGEN
+- Naam Leerkrachten Tool; schoollogo behouden; footer © - Grossard Tim 2026.
+- Knoppen voor nieuw item in betreffende tegelhoofding, filters wissen naast
+  kolomfilters; geen dubbel algemeen zoekveld. Nieuw vak correct benoemen.
+- Wijzigen met potlood, wissen met vuilbak en toegankelijke omschrijving.
+- Niet-actieve moduletegels inklapbaar, instellingenmodule met tandwiel op start.
+- Persoonlijke kleurenkiezers voor UI, opgeslagen per leerkracht. Scorekleuren
+  staan vast, 80 is felblauw. Duidelijk onderscheid tussen schermkolommen.
+- Compacte lay-out voor 1080p; fullscreen via browserknop. Automatische native
+  venstermodus met alleen OS-titelbalk is nog niet ingebouwd.
+
+EXCEL
+- Spreek van puntenlijst, niet rapport. Klas- en individuele export.
+- Individuele export bevat uitsluitend geselecteerde leerling en beoordeelde
+  regels; nooit scores van medeleerlingen. Leerlingkeuze alleen bij die optie.
+- Bestandsnaam: schooljaar - klas - vak - [leerling -] onderwerp - lesdatum.
+- Exportkeuze, selecties en gevonden lessen als afzonderlijke tegels.
+- Geen lessen wissen vanuit export. Gebruik zelfstandig bundelbare XlsxWriter.
+
+TESTEN EN GEGEVENS
+- Test toegangsgrenzen, scoreberekeningen inclusief 0/leeg/Afwezig, Excel-
+  privacy, historische gegevens en herstel met tijdelijke databases.
+- Bewerk of vervang geen echte gegevens voor demonstraties of schermtests.
+- Smartschool staat geparkeerd; geen externe koppeling zonder nieuwe opdracht.
+
+--- EERDERE CONTEXT (bovenstaande actuele regels hebben voorrang) ---
+
+PROMPT — MODULAIR HULPPROGRAMMA VOOR LEERKRACHTEN
+
+OPDRACHT
+Ontwikkel een Nederlandstalig overkoepelend hulpprogramma voor meerdere
+leerkrachten, bruikbaar op Windows, Mac en andere systemen. Voorgestelde
+uitwerking: een browsertoepassing met een centrale server en database.
+Iedere leerkracht logt in met een eigen account en wachtwoord. Het eerste
+onderdeel beheert eigen klassen, leerlingen, leerplandoelstellingen en
+lesevaluaties per leerkracht en schooljaar. Bouw het geheel modulair op,
+zodat later ook planning van klantendiensten, stages en andere onderdelen
+kunnen worden toegevoegd. Daarvoor zijn nog geen functionele eisen beschikbaar.
+
+Dit document beschrijft de gewenste werking. Hosting en de hieronder
+vermelde open keuzes moeten nog worden afgestemd. Presenteer voorgestelde
+standaardregels niet als reeds door de gebruiker bevestigde afspraken.
+
+1. CONTEXT EN REFERENTIE
+
+- Een school heeft meerdere klassen per schooljaar.
+- Iedere klas heeft een klasnaam en een bijbehorende studierichting.
+- Iedere klas bevat meerdere leerlingen en volgt meerdere vakken.
+- Per vak wordt geëvalueerd op leerplandoelstellingen.
+- Een leerplandoelstelling kan één of meerdere subdoelstellingen of concrete
+  evaluatiepunten bevatten. Stem af of deze twee termen hetzelfde betekenen.
+- De toegelaten ingevoerde cijfers zijn 0, 20, 40, 60 en 80. Daarnaast is er
+  de afzonderlijke status Afwezig. Een leeg veld betekent nog niet beoordeeld.
+- Momenteel wordt voor iedere les een afzonderlijk Excel-bestand aangemaakt.
+- Gebruik 'Evaluatie 6HV.xlsx' in deze map als inhoudelijk referentievoorbeeld.
+  Het bevat de tabbladen 'Evaluatie Les', 'Feedback' en
+  'Evaluatiecriteria school'. Leerlingen staan in kolommen en evaluatiepunten
+  in rijen. Er zijn totalen per onderdeel, een algemeen totaal en een gemiddelde.
+- In het voorbeeld staan soms meerdere doelcodes boven één onderdeel. Leg de
+  koppeling tussen doelstellingen en evaluatiepunten expliciet vast; leid geen
+  individuele koppelingen af die niet uit de bron blijken.
+- Neem bestaande Excel-formules niet blind over. De nieuwe berekeningen moeten
+  volgen uit de afgesproken evaluatie- en wegingsregels.
+
+2. EERSTE FASE EN MODULAIRE OPBOUW
+
+Werk in de eerste fase de volgende onderdelen uit:
+1. Hoofdprogramma: aanmelden, afmelden, persoonlijk startscherm en moduletoegang.
+2. Overkoepelend adminbeheer: leerkrachten en hun moduletoegang beheren.
+3. Onderdeel Leerlingenevaluaties, met de modules Beheer en Evaluaties.
+4. Excel-export voor een klas of één leerling.
+
+Het beheer van klassen en doelen is persoonlijk leerkrachtenbeheer en staat
+los van het overkoepelende beheer van accounts en toegangsrechten.
+
+2.1 Accounts en toegangsrechten
+- Iedere leerkracht heeft een eigen account en eigen wachtwoord.
+- De inlogpagina biedt een keuzelijst met actieve accounts. Het wachtwoord
+  blijft verplicht; inactieve accounts worden niet aangeboden.
+- De admin beheert leerkrachten rechtstreeks vanuit het hoofdportaal via
+  'Leerkrachten & toegang': toevoegen, wijzigen, deactiveren, wachtwoord
+  instellen en toegang tot evaluaties en Excel-export beheren.
+- Eén overkoepelend admin-profiel kan leerkrachten toevoegen, wijzigen,
+  deactiveren en per leerkracht toegang tot onderdelen toekennen of intrekken.
+- Toon na het aanmelden alleen de onderdelen waarvoor toegang is verleend.
+- Controleer toegang ook op de server bij iedere lees- en schrijfactie.
+  Alleen knoppen of menu-items verbergen is onvoldoende.
+- Iedere leerkracht beheert eigen klassen, lessen, evaluaties en feedback per
+  schooljaar. Controleer eigenaarschap ook bij rechtstreeks opvragen via een URL.
+- Centrale opslag betekent niet dat leerkrachten automatisch elkaars gegevens
+  kunnen zien. Onderlinge inhoudelijke deling is nog niet gevraagd.
+- Het admin-profiel beheert accounts en rechten. Toegang van de admin tot
+  leerlingresultaten is een aparte, nog af te stemmen bevoegdheid.
+- Wachtwoorden veilig hashen, nooit leesbaar bewaren of aan de admin tonen.
+- Voorzie een veilige procedure om een wachtwoord in te stellen of te herstellen.
+- Accountdeactivatie blokkeert toegang maar verwijdert geen evaluatiehistoriek.
+- Intrekken van moduletoegang moet ook voor bestaande sessies effect hebben.
+- Laat verschillende leerkrachten gelijktijdig werken zonder gegevensvermenging.
+
+Scheid de gebruikersinterface, gegevensopslag en berekeningsregels duidelijk.
+Beide modules gebruiken dezelfde centraal beheerde gegevens en relaties.
+Bewaar gegevens duurzaam, zodat ze na afsluiten en opnieuw openen beschikbaar
+blijven. Gebruik stabiele identificaties in plaats van namen als koppelsleutel.
+Excel-export maakt inmiddels deel uit van de scope. Ontwerp uitbreidings-
+mogelijkheden voor afdrukken en PDF, maar bouw die nog niet in deze fase.
+
+2.2 Verder ontwikkelen met behoud van gegevens
+- Bewaar productiegegevens onafhankelijk van de programmacode en uitrolbestanden.
+- Gebruik afzonderlijke ontwikkel-, test- en productieomgevingen. Gebruik in
+  ontwikkeling en tests fictieve of passend geanonimiseerde gegevens.
+- Houd code en databasewijzigingen bij in versiebeheer. Pas databasewijzigingen
+  toe met gecontroleerde migraties die bestaande gegevens behouden.
+- Een update mag geen database resetten, tabellen opnieuw vullen met testdata
+  of bestaande gegevens overschrijven.
+- Maak automatische back-ups en extra back-ups voor risicovolle updates.
+- Bewaar back-ups los van de toepassing en test daadwerkelijk terugzetten.
+- Leg vóór ingebruikname bewaartermijnen, maximaal aanvaardbaar gegevensverlies
+  en hersteltijd vast. Kies zo nodig herstel tot een tijdstip tussen back-ups.
+- Test updates en migraties eerst buiten productie, inclusief behoud van
+  bestaande scores, feedback, eigenaarschap en toegang.
+- Leg een herstelprocedure vast die rekening houdt met wijzigingen die sinds
+  een back-up door gebruikers zijn ingevoerd.
+- Voorkom dat gelijktijdig bewerken, ook vanuit twee tabbladen, wijzigingen
+  ongemerkt overschrijft. Detecteer conflicten en meld ze aan de gebruiker.
+- Registreer belangrijke wijzigingen met gebruiker en tijdstip; vermijd
+  wachtwoorden en onnodige leerlinggegevens in technische logs.
+- Een afgerond schooljaar blijft bewaard wanneer nieuwe modules worden gebouwd.
+- Absolute afwezigheid van risico is geen haalbare garantie. Ontwerp op
+  gegevensbehoud, beperkte impact van fouten en aantoonbaar herstel.
+
+3. MODULE BEHEER
+
+3.1 Schooljaren en klassen
+- Schooljaren aanmaken, bekijken, wijzigen en opslaan.
+- Per schooljaar meerdere klassen aanmaken, bekijken, wijzigen en opslaan.
+- Per klas een klasnaam vastleggen en een unieke, herbruikbare studierichting selecteren.
+- Leg ook het leerjaar vast, los van het schooljaar: bijvoorbeeld 6e leerjaar
+  binnen schooljaar 2026–2027.
+- Dezelfde klasnaam mag in verschillende schooljaren voorkomen.
+- Verschillende leerkrachten kunnen dezelfde klasnaam gebruiken zonder dat
+  hun persoonlijke klassen en evaluaties automatisch samengevoegd worden.
+- Leerlingen toevoegen en aan een klas binnen een schooljaar koppelen.
+- Leerlinggegevens en klaskoppelingen kunnen wijzigen en opslaan.
+- Historische inschrijvingen en evaluaties blijven aan het juiste schooljaar
+  gekoppeld wanneer een leerling naar een volgende klas gaat.
+
+3.2 Leerplandoelstellingen en subdoelstellingen
+- Beheer leerplandoelstellingen per leerkracht, studierichting en graad.
+- Doelen zijn onafhankelijk van schooljaar en vak en kunnen over jaren worden hergebruikt.
+- 1e graad omvat leerjaar 1–2, 2e graad 3–4, 3e graad 5–7.
+- Leg code, omschrijving en één of meerdere geordende evaluatiepunten vast.
+- Bied in een les de actieve eigen doelen van de studierichting en graad aan.
+- Controleer deze koppeling ook bij rechtstreeks toevoegen via de server.
+- Brondoelen wissen kan alleen vanuit Beheer. Een doel uit een les verwijderen
+  blijft mogelijk zonder het brondoel te wissen.
+
+3.3 Hergebruik en historiek
+- De basisgegevens worden bij aanvang van het schooljaar ingericht en daarna
+  hergebruikt bij het aanmaken van lessen.
+- Het moet mogelijk blijven deze gegevens later te corrigeren.
+- Wijzigingen mogen bestaande evaluaties niet ongemerkt een andere betekenis
+  geven. Kies hiervoor een duidelijke aanpak, bijvoorbeeld versies of een
+  bewaarde kopie van de doelomschrijvingen bij de les.
+- Voorkom dat verwijderen van gebruikte klassen, leerlingen of doelstellingen
+  bestaande resultaten beschadigt. Bied waar nodig archiveren aan.
+
+4. MODULE EVALUATIES
+
+4.1 Lessen beheren
+- Per klas en schooljaar lessen aanmaken, bekijken, wijzigen en opslaan.
+- Een les heeft een datum en een herkenbare titel of omschrijving.
+- Koppel een les aan het juiste vak zodra de vakstructuur is afgestemd.
+- Toon een overzicht van bestaande lessen binnen de geselecteerde context.
+- Een opgeslagen les kan later opnieuw worden geopend en aangepast.
+
+4.2 Doelstellingen kiezen per les
+- Niet iedere les behandelt dezelfde doelstellingen.
+- Toon de voor de klas beschikbare leerplandoelstellingen.
+- Laat de gebruiker doelstellingen naar de les slepen.
+- Bied ook een eenvoudige knop of selectie aan als alternatief voor slepen.
+- Neem bij een geselecteerde doelstelling de bijbehorende evaluatiepunten mee.
+- Laat de gebruiker de selectie en volgorde van doelstellingen aanpassen.
+- Stem af of ook afzonderlijke subdoelstellingen per les kunnen worden gekozen.
+- Voorkom dubbele toevoegingen van hetzelfde doel aan dezelfde les.
+- Verwijderen van een doel waarop al scores staan mag geen onopgemerkt
+  gegevensverlies veroorzaken.
+
+4.3 Scores invoeren
+- Toon de leerlingen van de gekozen klas en de doelen/evaluatiepunten van de les.
+- Maak snel beoordelen van meerdere leerlingen mogelijk, bijvoorbeeld met een
+  overzichtelijke matrix zoals in het huidige Excel-formulier.
+- Per leerling en evaluatiepunt kunnen 0, 20, 40, 60 of 80 worden ingevoerd,
+  of de afzonderlijke status Afwezig.
+- Dwing deze beperking zowel in de invoer als bij het opslaan af.
+- Een nog niet ingevulde beoordeling is geen nul en geen score 20.
+- Afwezig is geen nul. Bewaar de status apart en sluit deze uit van het
+  gemiddelde. Een werkelijk ingevoerde score 0 telt wel mee.
+- Scores kunnen later worden aangepast of terug leeggemaakt.
+- Ondersteun indien gewenst rechtstreeks beoordelen van een doel zonder
+  subdoelstellingen; stem deze werkwijze eerst af.
+- De bron benoemt de vier niveaus als zwaar onvoldoende (20), onvoldoende (40),
+  meestal al goed bezig (60) en heel goed gewerkt (80).
+
+4.4 Feedback
+- Algemene feedback over de prestatie van de klas tijdens de les opslaan.
+- Per leerling feedback over diens prestatie tijdens die les opslaan.
+- Feedback blijft gekoppeld aan de betreffende les en, waar van toepassing,
+  de betreffende leerling.
+- Feedback later kunnen bekijken en wijzigen.
+
+4.5 Totalen en gemiddelden
+Toon binnen iedere les:
+- Per leerling: totaal en gemiddelde per leerplandoelstelling.
+- Per leerling: algemeen totaal en algemeen gemiddelde voor de les.
+- Per klas: totaal en gemiddelde per leerplandoelstelling.
+- Per klas: algemeen gemiddelde voor de les. Geen kaart met algemeen klastotaal.
+- Het aantal ingevulde beoordelingen en het aantal mogelijke beoordelingen,
+  zodat onvolledige evaluaties herkenbaar zijn.
+
+Bevestigde wegingsregel:
+- Alle evaluatiepunten zijn evenwaardig. Een doel met meer evaluatiepunten
+  levert daardoor meer bijdragen aan het algemene gemiddelde. Bereken dit
+  niet als een ongewogen gemiddelde van de afzonderlijke doelgemiddelden.
+
+Verdere rekenregels (standaardvoorstel waar niet expliciet bevestigd):
+- Bereken alleen met werkelijk ingevulde scores.
+- Een score 0 is een ingevulde score. Rapporteer afwezigheden apart.
+- Sluit lege beoordelingen uit van som en gemiddelde; toon zonder ingevulde
+  scores 'Nog niet beoordeeld' in plaats van een misleidend resultaat nul.
+- Totaal weergeven als X/Y: X is de som, Y is 80 maal het aantal ingevulde cijfers. Leeg en Afwezig tellen niet mee; 0 wel (bevestigd).
+- Gemiddelde = som gedeeld door het aantal relevante ingevulde scores.
+- Bereken het klasgemiddelde onder deze voorgestelde regel over alle relevante
+  ingevulde scores. Bij ongelijke aantallen beoordelingen per leerling kan dit
+  afwijken van het gemiddelde van de leerlinggemiddelden.
+- Stem alleen nog af hoe het klasgemiddelde bij ongelijke aantallen ingevulde
+  scores per leerling wordt behandeld; de gelijkwaardigheid van evaluatiepunten
+  zelf staat vast.
+- Toon de schaal expliciet. Met invoerwaarden tot 80 is het rekenkundig
+  gemiddelde maximaal 80. Stem af of de waarden beoordelingsniveaus op een
+  schaal van 100 zijn of naar 100 moeten worden omgerekend. Converteer niet
+  automatisch alleen op basis van het label in het Excel-voorbeeld.
+- Rond alleen de weergave af en bewaar de nauwkeurigheid van de berekening.
+- Automatisch berekende gemiddelden hoeven niet zelf 0, 20, 40, 60 of 80 te zijn.
+- Tel doelen en onderliggende evaluatiepunten niet dubbel mee.
+
+Overzichten over meerdere lessen of een volledige periode kunnen later worden
+toegevoegd; ze zijn nog niet expliciet onderdeel van deze eerste fase.
+
+4.6 Navigatie en bewaren
+- Gemakkelijk wisselen tussen schooljaren, klassen en lessen.
+- Maak de actieve selectie steeds zichtbaar.
+- Wisselen van context mag invoer niet ongemerkt verloren laten gaan.
+- Geef helder aan of wijzigingen zijn opgeslagen en meld opslagfouten.
+- Eerder opgeslagen scores en feedback moeten na heropenen identiek beschikbaar
+  zijn en verder kunnen worden bewerkt.
+
+5. CONCEPTUELE GEGEVENSSTRUCTUUR
+
+Gebruik ten minste de volgende entiteiten of gelijkwaardige structuren:
+- Gebruikersaccount: leerkracht of overkoepelend admin-profiel.
+- Beschikbaar programmaonderdeel en toegangstoekenning per account.
+- Schooljaar.
+- Klas: gekoppeld aan eigenaar/leerkracht en schooljaar, met naam en studierichting.
+- Leerling.
+- Klasinschrijving: leerling gekoppeld aan klas binnen een schooljaar.
+- Vak: precieze koppelingen nog af te stemmen.
+- Leerplandoelstelling: eigenaar, studierichting, graad, code, omschrijving.
+- Subdoelstelling/evaluatiepunt: gekoppeld aan leerplandoelstelling.
+- Doelbeschikbaarheid afgeleid van studierichting en graad, zonder jaarlijkse klaskoppeling.
+- Les: klas, datum, titel/omschrijving en eventueel vak.
+- Lesdoel: geselecteerde doelstelling met volgorde en historische omschrijving.
+- Beoordeling: les, leerling, evaluatiepunt en toegelaten score.
+- Klasfeedback bij een les.
+- Leerlingfeedback bij een les.
+
+Maak voor alle persoonlijke gegevens eigenaarschap rechtstreeks of via een
+ondubbelzinnige relatie controleerbaar. Een ingevoerd record-ID geeft op zichzelf
+geen toegang. Koppelingen moeten binnen de toegestane eigenaar- en
+schooljaarcontext vallen. Een eventuele gedeelde doelcatalogus is een aparte
+latere keuze; maak persoonlijke doelen niet stilzwijgend openbaar.
+
+Bewaar geen los bewerkbare kopieën van berekende totalen en gemiddelden.
+Leid deze af uit de opgeslagen scores volgens één gedeelde berekeningslogica.
+
+6. EXCEL-EXPORT EN LATERE MODULES
+
+- Export naar echte Excel-bestanden (.xlsx) is toegevoegd aan de huidige fase.
+- Laat de leerkracht schooljaar, klas, eventueel vak en datumbereik kiezen,
+  gevolgd door één of meerdere lessen.
+- Klasoverzicht: leerlingen in kolommen, doelen en punten in rijen, in een
+  soortgelijke indeling als Evaluatie 6HV.xlsx. Neem een overzicht, één
+  tabblad per les en een feedbackblad op.
+- Individuele puntenlijst: alleen scores en persoonlijke feedback van de gekozen
+  leerling. Geen medeleerlingen, klasfeedback of klasgemiddelden. Bouw hiervoor
+  een nieuw bestand vanuit gefilterde gegevens; verberg geen andere leerlingen.
+- Behoud 0 en Afwezig als verschillende waarden. Bereken gewogen naar het aantal
+  werkelijk beoordeelde, gelijkwaardige punten, niet via een gemiddelde van
+  lesgemiddelden. Behoud formules in Excel met berekende opgeslagen resultaten.
+- Exporteer uitsluitend eigen gegevens met servercontrole van rechten,
+  leerling, klas en lessen. Bied Excel-export als afzonderlijk toekenbaar recht
+  aan binnen Leerlingenevaluaties.
+- Exportbestanden worden gedownload; gegevens in het portaal veranderen niet
+  wanneer een gebruiker het gedownloade Excel-bestand bewerkt.
+- De volgende onderdelen blijven buiten deze fase:
+- Afdrukmodule.
+- Eventueel PDF-generatie.
+- Planning van klantendiensten, stages en andere toekomstige onderdelen.
+- Deze toekomstige onderdelen gebruiken dezelfde aanmelding en moduletoegang,
+  maar hebben hun eigen gegevens en functionele logica.
+- Bereid de architectuur voor zodat deze modules dezelfde opgeslagen gegevens
+  en berekeningslogica gebruiken als de evaluatiemodule.
+
+7. OPEN KEUZES VOOR DE BOUW
+
+Stem de volgende keuzes af zonder ze stilzwijgend als vereisten in te vullen:
+1. Hosting op een schoolserver of bij een externe hostingpartij?
+2. Welke hosting, gegevenslocatie en beheerafspraken passen bij de school?
+3. Hoe worden back-ups, bewaartermijnen en hersteldoelen geregeld?
+4. Afgehandeld: vakken horen bij schooljaren en richtingen; klassen kiezen hun vakken. Doelen horen bij richting en graad.
+5. Afgehandeld: alle eigen klassen binnen dezelfde richting en graad kunnen een doel gebruiken.
+6. Zijn subdoelstellingen en evaluatiepunten synoniemen of aparte niveaus?
+7. Worden uitsluitend evaluatiepunten gescoord of ook doelen rechtstreeks?
+8. Kunnen binnen een les ook afzonderlijke evaluatiepunten worden geselecteerd?
+9. Hoe telt het klasgemiddelde leerlingen met onvolledige beoordelingen mee?
+10. Wat betekent de schaal 20/40/60/80 voor de rapportering op 100?
+11. Is naast leeg en Afwezig ook de status 'Niet van toepassing' nodig?
+12. Mag de admin leerlingresultaten inzien of alleen accounts en toegang beheren?
+
+8. ACCEPTATIE VAN DE EERSTE FASE
+
+De eerste fase werkt wanneer een gebruiker:
+- Via de browser op Windows en Mac kan aanmelden met een eigen account.
+- Alleen toegestane onderdelen en eigen evaluatiegegevens kan benaderen.
+- Een schooljaar met meerdere klassen en leerlingen kan opslaan en heropenen.
+- Doelstellingen en hun evaluatiepunten kan beheren en aan klassen koppelen.
+- Voor dezelfde klas verschillende lessen met verschillende doelen kan maken.
+- Doelen naar een les kan slepen of via een selectie kan toevoegen.
+- Per leerling toegelaten scores en feedback kan opslaan en later wijzigen.
+- Klasfeedback per les kan opslaan en later wijzigen.
+- Correcte totalen en gemiddelden ziet volgens de afgesproken regels.
+- Lege beoordelingen kan onderscheiden van toegekende scores.
+- Tussen schooljaren, klassen en lessen kan wisselen zonder gegevensverlies.
+- Het programma kan afsluiten en heropenen met behoud van alle opgeslagen data.
+
+De admin kan accounts en moduletoegang beheren zonder evaluaties te verwijderen.
+Test met minstens twee leerkrachten dat zij elkaars gegevens niet kunnen lezen
+of wijzigen, ook niet via rechtstreeks opgevraagde adressen of record-ID's.
+Verifieer een update van een gevulde database en een back-upherstel in een
+afzonderlijke testomgeving voordat echte gegevens in productie worden gebruikt.
+
+9. TECHNISCHE OPZET — BASIS VOOR DE LOKALE IMPLEMENTATIE
+
+- Eén modulair opgebouwde webtoepassing met een gezamenlijke aanmelding.
+- Een centrale applicatieserver controleert accounts, rechten en eigenaarschap.
+- Een centrale PostgreSQL-database bewaart gegevens onafhankelijk van de browser.
+- Django is een geschikte voorgestelde basis voor accounts, rechten en migraties.
+  Persoonlijk eigenaarschap en moduletoegang vragen expliciete implementatie;
+  het framework levert deze toepassingsspecifieke regels niet automatisch.
+- Gebruik HTTPS en beveiligde sessies. Maak de database niet rechtstreeks
+  toegankelijk vanuit de browser.
+- Werk eerst lokaal met fictieve gegevens, daarna in een aparte testomgeving
+  en pas na controle in productie met echte gegevens.
+- Een gehoste webtoepassing vereist een hostingomgeving, een bereikbaar webadres,
+  operationeel beheer en back-ups. Hosting is nog niet gekozen of besteld.
+- Offline bewerken en synchroniseren behoren niet tot de huidige scope.
+
+Technische referenties voor het voorstel:
+https://docs.djangoproject.com/en/6.0/topics/auth/default/
+https://docs.djangoproject.com/en/6.0/topics/migrations/
+https://www.postgresql.org/docs/current/backup.html
+
+10. AANVULLINGEN EN BOUWKEUZES VOOR DE EERSTE LOKALE VERSIE
+
+- Het programma wordt vanuit deze chat gebouwd; een afzonderlijke Codex-chat
+  is niet nodig. De bouwvoortgang wordt bijgehouden in voortgang.md.
+- Integreer 'logo-Atheneum-Tungrorum-960x340-webversie.png' uit de bronmap in
+  de gebruikersinterface, met behoud van verhoudingen en leesbaarheid.
+- Gebruik de bordeauxrode kleur uit het logo als accent in de interface.
+- De eerste implementatie gebruikt Django met afzonderlijke accounts- en
+  evaluatieonderdelen. Lokale demo: SQLite. Productie: PostgreSQL.
+- Vakken worden per leerkracht en schooljaar beheerd en aan klassen gekoppeld.
+  Een les heeft één vak; doelen horen bij een studierichting en graad.
+  Doelen worden over vakken en schooljaren hergebruikt. De server controleert
+  richting, graad en eigenaar ook bij toevoegen aan lessen.
+- In deze eerste versie zijn subdoelstellingen de concrete evaluatiepunten.
+  Een doel heeft minstens één punt. Een gekozen lesdoel neemt alle punten mee.
+- Alle punten zijn evenwaardig. Lege scores tellen niet mee. Klasgemiddelden
+  gebruiken alle ingevulde scores met hetzelfde gewicht. Er gebeurt geen
+  automatische omrekening naar 100. Dit zijn zichtbare voorlopige keuzes voor
+  de nog niet bevestigde details, die na beoordeling kunnen worden aangepast.
+- Het admin-profiel krijgt niet automatisch toegang tot leerlingresultaten.
+- Evaluaties bewaren kopieën van de doelomschrijvingen, punten en leerlingnamen
+  zoals ze bij het aanmaken waren. Basisgegevens wijzigen herschrijft geen les.
+- Google Drive is voorgesteld als hostinglocatie. Een gedeelde Drive-map kan
+  deze servertoepassing niet hosten. Eventueel later gebruiken voor exports of
+  afgeschermde back-upbestanden, niet als actief gedeeld databasebestand.
+- De hostingpartij, het webadres en de productieconfiguratie zijn nog niet gekozen.
+
+Verifieer met name het weigeren van ongeldige scores, rekenen met deels lege
+evaluaties, bewaren en heropenen, contextwisselingen en het behoud van eerdere
+evaluaties na wijzigingen in de beheergegevens.
+
+11. OVERZICHTEN, EVALUATIE-UI EN LOKAAL STARTEN
+
+- Bied zoeken, combineerbare filters per inhoudelijk veld en oplopend/aflopend
+  sorteren in overzichtslijsten: beheer, lessen, accounts, export en klasresultaten.
+- Toon zonder expliciete filters alle eigen databankrecords, over alle schooljaren.
+  Geen stilzwijgende limiet, archieffilter of selectie van alleen het nieuwste jaar.
+  Houd de gegevens van verschillende leerkrachten strikt gescheiden.
+- Voeg Alle schooljaren en Alle filters wissen toe. Lokale tabelfilters wissen
+  toont alle records binnen de expliciet gekozen schooljaar-/klascontext.
+- Combineer klassen- en leerlingenbeheer. Een leerling toevoegen vanuit een
+  klas selecteert die klas vooraf. Bewaar bestaande URL's voor wijzigingen.
+- Gebruik kleuraccenten per sectie, een moderne rustige appindeling, grote
+  moduletitels en kleinere subonderdelen in de algemene navigatie.
+- Toon beschikbare doelen compact in een doorzoekbare lijst met subdoelen.
+- Laat de volledige doelgroepen in de puntenmatrix verslepen, ook met nog
+  niet opgeslagen scores. Bied ook pijlen voor toetsenbordbediening.
+- Sla de doelvolgorde, scores en feedback in één transactie op met revisiecontrole.
+  Weiger onvolledige of ongeldige doelvolgordes zonder gedeeltelijke wijzigingen.
+- Gebruik witruimte tussen doelgroepen en vóór leerling- en klastotalen.
+  Toon algemeen totaal en gemiddelde afzonderlijk.
+- Zet de exportleerlingkeuze direct onder Individuele leerling; verberg
+  deze en maak deze niet verplicht bij een klaspuntenlijst.
+- Bereid een importingang voor bij leerplandoelen. Officiële documenten hebben
+  dezelfde layout; alleen doelen en subdoelen verschillen. De bestanden volgen.
+  Activeer herkenning/upload pas na analyse van een officieel voorbeeldbestand.
+- Start-tool.bat in de projecthoofdmap start de lokale server en opent de browser
+  zodra de site gereed is. Hergebruik een reeds draaiende lokale portalserver.
+  Toon een fout bij een andere toepassing op de poort zonder die te beëindigen.
+  Mac/Linux gebruiken dezelfde Python-opstartlogica via start-mac.sh.
+
+12. VASTE NAVIGATIE EN COMPACTE EVALUATIEMATRIX
+
+- Verbreed het hoofdmenu; toon toegelaten modules als afzonderlijke kaarten met
+  moduletitels op één regel en kleinere subonderdelen.
+- Zet ingelogde leerkracht, wachtwoord en afmelden onderaan het hoofdmenu.
+- Verplaats Scores & feedback opslaan naar de rechterkolom van de evaluatie.
+  De knop blijft verbonden met het volledige evaluatieformulier.
+- Houd die rechterkolom in beeld op brede schermen. Langere inhoud kan apart
+  scrollen; de opslagknop blijft ook binnen die kolom bereikbaar.
+- Zet leerlingnamen verticaal boven de smallere scorekolommen. Bevries deze
+  kolomkoppen tijdens scrollen binnen de matrix; doelomschrijvingen blijven links.
+- Op smalle schermen komt de opslagactie in een bereikbare vaste onderbalk.
+
+13. KLASSELECTIE EN INGAVEN WISSEN
+
+- Maak iedere klasrij selecteerbaar met een keuzerondje, de klasnaam of een klik
+  op de rij. Markeer precies één gekozen klas en toon automatisch haar leerlingen.
+- Houd andere klasrijen beschikbaar om te wisselen. Alle klassen/filters wissen
+  toont opnieuw alle eigen leerlingen; respecteer een expliciet gekozen schooljaar.
+- Voeg Wissen toe bij schooljaren, vakken, klassen, leerlingen, leerplandoelen,
+  lessen en leerkrachten. Leerkrachten wissen is alleen voor de beheerder.
+- Toon eerst een bevestigingspagina met naam en concrete gevolgen; GET wist niets.
+  Vereis CSRF, bevestiging en een ondertekende actuele bevestiging bij POST.
+- Wis gekoppelde onderwijsgegevens niet stilzwijgend: schooljaren/vakken/klassen
+  met afhankelijke gegevens blijven beschermd. Leerlingen met lesinschrijvingen
+  kunnen inactief worden gemaakt zodat individuele exports blijven werken.
+- Een les kan na expliciete bevestiging inclusief scores en feedback worden
+  gewist. De klas en beheerdoelen blijven staan. Het wissen van een beheerdoel
+  verwijdert zijn subdoelen, maar bewaart de kopieën en scores in bestaande lessen.
+- Bescherm het eigen admin-account. Accounts met gegevens of loghistoriek kunnen
+  worden gedeactiveerd. Leg uitgevoerde wisacties vast in het auditlog.
+
+
+14. BEVESTIGDE GEBRUIKERSFEEDBACK — 4 OKTOBER 2026
+
+Deze specificatie verfijnt en vervangt eerdere afwijkende bouwvoorstellen.
+- Smartschool en hosting parkeren tot overleg met de beheerder.
+- Beheer in de volgorde Schooljaren, Studierichtingen, Klassen & leerlingen,
+  Vakken, Leerplandoelen. Schooljaren uniek per leerkracht; studierichtingen uniek
+  per leerkracht over schooljaren. Meerdere klassen per richting en schooljaar.
+- Vakken worden binnen een schooljaar aan studierichtingen gekoppeld; klassen
+  krijgen meerdere vakken uit hun richting. Leerlingen horen bij een klasjaar.
+- Migreer bestaande richtingsteksten en relaties met behoud van alle gegevens.
+- Toon beoordeelde evaluatiepunten per leerling, niet als klastotaalkaart.
+- Individuele totalen per doel en algemeen: behaalde punten / mogelijke punten.
+  Mogelijk = aantal ingevulde cijfers maal 80. Leeg en Afwezig uitgesloten; 0 telt.
+- Bied per toegevoegd lesdoel een filter voor volledig lege rijen. Verbergen
+  mag geen invoervelden uitschakelen, wissen of bestaande scores veranderen.
+- Verwijder de kaart met klastotaal. Behoud het klasgemiddelde.
+- Score 80 felblauw; andere scoreniveaus sterker, niet pastel. Leerplandoelen
+  fuchsia. Versterk de bestaande sectiekleuren in de volledige interface.
+- Verwijder algemene zoekvelden. Behoud combineerbare kolomfilters en sorteren.
+- Noem Excel-output puntenlijst. Klasbestandsnaam: Schooljaar - Klas - Vak -
+  Lesonderwerp - Datum les. Individueel: voeg Leerling in vóór Lesonderwerp.
+- Bij een selectie van meerdere lessen gebruikt één werkboek het aantal lessen
+  en de datumperiode in de naam; toon deze werkwijze in het exportscherm.
+- Exporteer uitsluitend rijen met cijfers bij minstens één opgenomen leerling.
+  Bij individuele export telt alleen die leerling. Behoud 0, verwijder volledig
+  lege/afwezig-only rijen en daardoor lege doelen. Geen verborgen medeleerlingen.
+- Excel-totalen volgen dezelfde X/Y-regel; gemiddelden blijven numeriek.
+- Exportscherm: tegel Soort export, tegel Selecties (jaar, klas, vak, van, tot),
+  tegel Gevonden lessen. Geen lessen wissen vanuit dit scherm.
+- Leerlingkeuze staat onder Individuele leerling en is alleen dan zichtbaar.
+- Documenteer overdracht naar een andere computer met nieuwe lokale Python-
+  omgeving, behoud van data en de nog apart te installeren Excel-afhankelijkheid.
+
+15. ZELFSTANDIGE UITVOERING
+Schermverfijning: maak de drie kolommen herkenbaar met blauw voor navigatie,
+een neutraal middenvlak en fuchsia voor de rechter gereedschapskolom.
+Toon doelnummer en titel groter naast elkaar in de puntenmatrix en geselecteerde
+doeltegels. Groepeer doelen met dezelfde titel onder één titel zonder code;
+plaats bij elk subdoel de eigen BK-code vet gevolgd door een dubbele punt.
+De groep wordt als geheel verplaatst, maar elk doel kan afzonderlijk uit de les.
+Behoud afzonderlijke ID's, scores en historische gegevens. Gebruik gewogen
+groepsgemiddelden op basis van alle ingevulde cijfers. Maak Lesgegevens compacter.
+Deze schermwijzigingen nog niet compileren; de gebruiker doet dit later zelf.
+
+- Voorzie desktop.py, Leerkrachtenportaal.spec en Build-exe.bat voor één Windows-executable.
+- Bewaar echte gegevens buiten de executable. Neem nooit bestaande accounts of leerlinggegevens op in het bouwbestand.
+- Start een lokale server op 127.0.0.1 en open automatisch de browser.
+- Een lege installatie biedt éénmalig lokaal de aanmaak van de eerste beheerder.
+- Maak vóór noodzakelijke databasemigraties automatisch een back-up.
+- Gebruik een zelfstandig mee te leveren Python Excel-engine (XlsxWriter).
+- Bouwen voor een ander besturingssysteem gebeurt op dat besturingssysteem.

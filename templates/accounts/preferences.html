@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block content %}
+<div class="eyebrow">INSTELLINGEN</div><h1>{% include "components/icon.html" with name="palette" %}Jouw instellingen</h1>
+<p><a class="button secondary" href="{% url 'manage' 'klassen' %}">{% include "components/icon.html" with name="settings" %}Tool-administratie</a></p><p>Kies je eigen schermkleuren. De vaste scorekleuren blijven voor iedereen gelijk.</p>
+<section class="panel form-panel"><form method="post">{% csrf_token %}<div class="color-fields">{{ form.as_p }}</div><div class="actions"><button class="button">Kleuren opslaan</button><button name="action" value="reset" class="button secondary" formnovalidate>Standaardkleuren</button></div></form></section>
+{% endblock %}

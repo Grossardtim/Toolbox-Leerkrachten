@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block content %}
+<h1>{% include 'components/icon.html' with name='audit' %}Softwarewijzigingen</h1>
+<p class="intro">Versies en wijzigingen van Leerkrachten Tool. Gegevenswijzigingen door gebruikers staan in het afzonderlijke gegevenslogboek.</p>
+<p class="small muted">Nummering: x.x voor grote updates en nieuwe functies; .xxx voor bugfixes. Huidige versie: {{ app_version }}.</p>
+{% for release in releases %}<section class="panel release-entry"><div class="panel-title"><h2>Versie {{ release.version }} · {{ release.title }}</h2><span class="muted">{{ release.date }} · {{ release.kind }}</span></div><div class="panel-body"><ul>{% for change in release.changes %}<li>{{ change }}</li>{% endfor %}</ul></div></section>{% endfor %}
+{% endblock %}

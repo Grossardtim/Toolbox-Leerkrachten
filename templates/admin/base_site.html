@@ -1,0 +1,4 @@
+{% extends 'admin/base.html' %}{% load static %}
+{% block title %}{{ title }} · Accountbeheer{% endblock %}
+{% block branding %}<div id="site-name"><a href="{% url 'home' %}"><img src="{% static 'school-logo.png' %}" alt="GO! Atheneum Tungrorum" style="width:180px;height:auto;background:white;padding:8px;border-radius:6px;vertical-align:middle;margin-right:20px"></a>Accounts & toegang</div>{% endblock %}
+{% block extrastyle %}{{ block.super }}<style>:root{--primary:#8e0038;--secondary:#bf0046;--accent:#ffffff;--link-fg:#a50040;--header-color:#ffffff;--selected-bg:#f9edf2;--selected-row:#f9edf2}</style>{% endblock %}

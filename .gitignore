@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+data/
+backups/
+staticfiles/
+.env
+node_modules/
+exports_engine/node_modules/
+outputs/
+build/
+dist/

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}{% block content %}
+<div class="eyebrow">JOUW WERKPLEK</div><h1>{% include "components/icon.html" with name="home" %}Welkom, {{ user.first_name|default:user.username }}.</h1>
+<p class="intro">Alles voor je lessen, op één plek. Kies een onderdeel om aan de slag te gaan.</p>
+<div class="module-grid">
+{% if user.can_evaluate or user.is_superuser %}<a class="module-card" href="{% url 'dashboard' %}"><span class="module-icon">{% include "components/icon.html" with name="evaluation" %}</span><span class="badge">BESCHIKBAAR</span><h2>Evaluaties</h2><p>Volg je leerlingen. Bereid lessen voor, beoordeel leerdoelen en geef gerichte feedback.</p><span class="card-link">Open evaluaties <b>→</b></span></a>{% endif %}
+{% if user.is_superuser %}<a class="module-card" href="{% url 'teachers' %}"><span class="module-icon">{% include "components/icon.html" with name="users" %}</span><span class="badge">BEHEERDER</span><h2>Leerkrachten & toegang</h2><p>Voeg leerkrachten toe, beheer hun accounts en geef toegang tot evaluaties en Excel-export.</p><span class="card-link">Leerkrachten beheren <b>→</b></span></a>{% endif %}
+{% if not user.can_evaluate and not user.is_superuser %}<div class="panel"><h2>Nog geen onderdelen toegekend</h2><p>Je account is actief. Vraag je beheerder om toegang tot de juiste onderdelen.</p></div>{% endif %}
+<a class="module-card" href="{% url 'preferences' %}"><span class="module-icon">{% include "components/icon.html" with name="settings" %}</span><h2>Instellingen</h2><p>Open de gedeelde tool-administratie of pas je persoonlijke schermkleuren aan.</p><span class="card-link">Instellingen openen →</span></a></div><div class="future-note"><strong>Ruimte om uit te breiden</strong><p>Dit portaal kan later worden uitgebreid met onder meer klantendiensten en stages.</p></div>
+{% endblock %}
