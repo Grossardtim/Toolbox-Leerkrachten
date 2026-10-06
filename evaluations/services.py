@@ -54,11 +54,15 @@ def display_goal_groups(groups):
 
     result = []
     for members in titles.values():
+        rows_with_points = []
+        for m in members:
+            for row in m['rows']:
+                rows_with_points.append({**row, 'code': m['goal'].code, 'point_id': row['point'].pk})
         result.append({
             'title': members[0]['goal'].title, 'goal': members[0]['goal'],
             'members': members, 'merged': len(members) > 1,
             'ids': ','.join(str(m['goal'].pk) for m in members),
-            'rows': [{**row, 'code': m['goal'].code} for m in members for row in m['rows']],
+            'rows': rows_with_points,
             'students': [combined([m['students'][i] for m in members])
                          for i in range(len(members[0]['students']))],
         })
@@ -92,7 +96,7 @@ def lesson_report(lesson, submitted=None):
                 per_student[learner.pk].append(value)
                 all_values.append(value)
             rows.append({'point': point, 'cells': cells})
-        groups.append({'goal': goal, 'rows': rows,
+        groups.append({'goal': goal, 'rows': [{**row, 'point_id': row['point'].pk} for row in rows],
             'students': [metric(group_student[s.pk], len(points)) for s in learners],
             'class_metric': metric(group_values, len(points) * len(learners))})
     for learner in learners:

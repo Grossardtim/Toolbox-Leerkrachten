@@ -336,23 +336,29 @@ def lesson_goal_action(request, pk):
                         chosen = [p for p in source.points.all() if p.pk in point_ids]
                         if source.pk in goal_ids or chosen:
                             snapshot_goal(lesson, source, None if source.pk in goal_ids else chosen)
-            elif action in ('remove', 'up', 'down'):
-                target = get_object_or_404(lesson.goals, pk=request.POST.get('goal'))
-                if action == 'remove':
+            elif action in ('remove', 'remove_point', 'up', 'down'):
+                if action in ('remove', 'up', 'down'):
+                    target = get_object_or_404(lesson.goals, pk=request.POST.get('goal'))
+                    if action == 'remove':
+                        if request.POST.get('confirm') != 'yes':
+                            raise ValueError('Bevestig dat je dit doel en alle bijbehorende scores wilt verwijderen. Deze actie kan niet ongedaan worden gemaakt.')
+                        target.delete()
+                    else:
+                        goals = list(lesson.goals.all())
+                        index = next(i for i, g in enumerate(goals) if g.pk == target.pk)
+                        other = index + (-1 if action == 'up' else 1)
+                        if 0 <= other < len(goals):
+                            goals[index], goals[other] = goals[other], goals[index]
+                        for i, goal in enumerate(goals):
+                            goal.position = i
+                        lesson.goals.model.objects.bulk_update(goals, ['position'])
+                elif action == 'remove_point':
+                    target_point = get_object_or_404(LessonPoint, pk=request.POST.get('point'))
                     if request.POST.get('confirm') != 'yes':
-                        raise ValueError('Bevestig dat je dit doel en alle bijbehorende scores wilt verwijderen. Deze actie kan niet ongedaan worden gemaakt.')
-                    target.delete()
-                else:
-                    goals = list(lesson.goals.all())
-                    index = next(i for i, g in enumerate(goals) if g.pk == target.pk)
-                    other = index + (-1 if action == 'up' else 1)
-                    if 0 <= other < len(goals):
-                        goals[index], goals[other] = goals[other], goals[index]
-                    for i, goal in enumerate(goals):
-                        goal.position = i
-                    lesson.goals.model.objects.bulk_update(goals, ['position'])
+                        raise ValueError('Bevestig dat je dit subdoel en de bijbehorende scores wilt verwijderen. Deze actie kan niet ongedaan worden gemaakt.')
+                    target_point.delete()
             else:
-                raise ValueError('Onbekende actie. Geldige acties zijn: up, down, remove.')
+                raise ValueError('Onbekende actie. Geldige acties zijn: up, down, remove, remove_point.')
             log(request.user, f'lesdoel {action}', lesson)
     except EditConflict:
         messages.error(request, 'De les is intussen gewijzigd. Controleer de actuele versie en probeer opnieuw.')

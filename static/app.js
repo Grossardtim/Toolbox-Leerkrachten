@@ -341,4 +341,61 @@
   });
   main.classList.add('standard-workspace');
   main.append(titlebar,editor);
+
+  // Handle goal and point removal with confirmation dialogs
+  const lessonPk = window.location.pathname.split('/')[2];
+  const formRevision = document.querySelector('input[name="revision"]')?.value || '';
+
+  // Helper function to get CSRF token
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return '';
+  };
+
+  // Handle BK (goal) removal
+  document.querySelectorAll('[data-remove-goal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const goalId = btn.dataset.removeGoal;
+      const goalCode = btn.dataset.confirmRemove;
+      if (confirm(`Weet je zeker dat je BK "${goalCode}" en ALLE bijbehorende subdoelen en scores wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.`)) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `/lesson/${lessonPk}/goal_action/`;
+        form.innerHTML = `
+          <input type="hidden" name="csrfmiddlewaretoken" value="${getCookie('csrftoken')}">
+          <input type="hidden" name="action" value="remove">
+          <input type="hidden" name="goal" value="${goalId}">
+          <input type="hidden" name="confirm" value="yes">
+          <input type="hidden" name="revision" value="${formRevision}">
+        `;
+        document.body.appendChild(form);
+        form.submit();
+      }
+    });
+  });
+
+  // Handle subdoel (point) removal
+  document.querySelectorAll('[data-remove-point]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pointId = btn.dataset.removePoint;
+      const pointName = btn.dataset.confirmRemove;
+      if (confirm(`Weet je zeker dat je subdoel "${pointName}" en de bijbehorende scores wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.`)) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `/lesson/${lessonPk}/goal_action/`;
+        form.innerHTML = `
+          <input type="hidden" name="csrfmiddlewaretoken" value="${getCookie('csrftoken')}">
+          <input type="hidden" name="action" value="remove_point">
+          <input type="hidden" name="point" value="${pointId}">
+          <input type="hidden" name="confirm" value="yes">
+          <input type="hidden" name="revision" value="${formRevision}">
+        `;
+        document.body.appendChild(form);
+        form.submit();
+      }
+    });
+  });
+
 })();
