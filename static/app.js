@@ -126,16 +126,18 @@
   };
   document.querySelectorAll('[data-lesson-goal]').forEach(group => {
     const filter = group.querySelector('[data-hide-empty]');
-    const filterRows = () => {
-      const label=group.querySelector('[data-fold-label]');
-      if(label) label.textContent=filter.checked?'Lege rijen tonen':'Lege rijen verbergen';
-      group.querySelectorAll('[data-score-row]').forEach(row => {
-        row.hidden = filter.checked && [...row.querySelectorAll('select.score')].every(s => s.value === '');
-      });
-    };
-    filter.addEventListener('change', filterRows);
-    filterRows();
-    group.querySelectorAll('select.score').forEach(s => s.addEventListener('change', filterRows));
+    if (filter) {
+      const filterRows = () => {
+        const label=group.querySelector('[data-fold-label]');
+        if(label) label.textContent=filter.checked?'Lege rijen tonen':'Lege rijen verbergen';
+        group.querySelectorAll('[data-score-row]').forEach(row => {
+          row.hidden = filter.checked && [...row.querySelectorAll('select.score')].every(s => s.value === '');
+        });
+      };
+      filter.addEventListener('change', filterRows);
+      filterRows();
+      group.querySelectorAll('select.score').forEach(s => s.addEventListener('change', filterRows));
+    }
     const handle = group.querySelector('.drag-handle');
     let pointerStart = null, pointerTarget = null;
     const finishDrag = () => {
