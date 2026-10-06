@@ -156,8 +156,8 @@ def manage(request, kind='klassen', pk=None):
                 if model == Student:
                     return redirect(reverse('manage', args=['klassen']) + f'?year={target_year.pk}&classroom={obj.classroom_id}#leerlingen')
                 return redirect(reverse('manage', args=[kind]) + f'?year={target_year.pk}')
-            except IntegrityError:
-                form.add_error(None, 'Deze gegevens bestaan al. Controleer de naam en probeer opnieuw.')
+            except IntegrityError as e:
+                form.add_error(None, f'Deze gegevens bestaan al. Controleer de naam en probeer opnieuw. Fout: {str(e)}')
     class_screen = model in (Classroom, Student)
     pupils = visible_records(Student, request.user).select_related('classroom__year')
     if year:
@@ -256,12 +256,14 @@ def lesson_detail(request, pk):
                 elif raw:
                     parsed.append(Score(point=p, learner=s, value=int(raw)))
         title = request.POST.get('title', '').strip()
-        if not title or len(title) > 180:
-            errors.append('Vul een lesonderwerp in van maximaal 180 tekens.')
+        if not title:
+            errors.append('Vul een lesonderwerp in.')
+        elif len(title) > 180:
+            errors.append('Het lesonderwerp mag maximaal 180 tekens bevatten.')
         try:
             lesson_date = date.fromisoformat(request.POST.get('date', ''))
         except ValueError:
-            errors.append('Vul een geldige datum in.')
+            errors.append('Vul een geldige datum in (JJJJ-MM-DD).')
         if not errors:
             try:
                 with transaction.atomic():
@@ -281,7 +283,7 @@ def lesson_detail(request, pk):
                 messages.success(request, 'Scores en feedback zijn opgeslagen.')
                 return redirect('lesson', pk=lesson.pk)
             except EditConflict:
-                errors.append('Deze les is intussen gewijzigd in een ander venster. Je invoer staat hieronder, maar is niet opgeslagen. Open de actuele les in een nieuw tabblad en vergelijk je wijzigingen.')
+                errors.append('Deze les is intussen gewijzigd in een ander venster of tabblad. Je invoer staat hieronder om te vergelijken. Open de actuele les in een nieuw tabblad en kopieer je wijzigingen handmatig.')
                 status = 409
         else:
             status = 400
@@ -327,9 +329,9 @@ def lesson_goal_action(request, pk):
                     sources = {g.pk: g for g in catalog.prefetch_related('points')}
                     points = {p.pk: p for g in sources.values() for p in g.points.all()}
                     if not goal_ids and not point_ids:
-                        raise ValueError('Vink minstens één BK of subdoel aan.')
+                        raise ValueError('Vink minstens één BK of subdoel aan om toe te voegen.')
                     if not goal_ids <= sources.keys() or not point_ids <= points.keys():
-                        raise ValueError('De selectie bevat doelen buiten dit leerplan. Er is niets toegevoegd.')
+                        raise ValueError('De selectie bevat doelen die niet beschikbaar zijn voor dit leerplan. Controleer je selectie.')
                     for source in sources.values():
                         chosen = [p for p in source.points.all() if p.pk in point_ids]
                         if source.pk in goal_ids or chosen:
@@ -338,7 +340,7 @@ def lesson_goal_action(request, pk):
                 target = get_object_or_404(lesson.goals, pk=request.POST.get('goal'))
                 if action == 'remove':
                     if request.POST.get('confirm') != 'yes':
-                        raise ValueError('Bevestig het verwijderen van het doel en de bijbehorende scores.')
+                        raise ValueError('Bevestig dat je dit doel en alle bijbehorende scores wilt verwijderen. Deze actie kan niet ongedaan worden gemaakt.')
                     target.delete()
                 else:
                     goals = list(lesson.goals.all())
@@ -350,7 +352,7 @@ def lesson_goal_action(request, pk):
                         goal.position = i
                     lesson.goals.model.objects.bulk_update(goals, ['position'])
             else:
-                raise ValueError('Onbekende actie.')
+                raise ValueError('Onbekende actie. Geldige acties zijn: up, down, remove.')
             log(request.user, f'lesdoel {action}', lesson)
     except EditConflict:
         messages.error(request, 'De les is intussen gewijzigd. Controleer de actuele versie en probeer opnieuw.')
